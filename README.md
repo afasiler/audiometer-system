@@ -13,12 +13,12 @@ The PDF defines a four-team project, but the technical runtime has two major com
 
 Within this repository, the Java side is separated into GUI, serial communication, audiometry logic, model, utility, and resource layers so that hardware access and medical logic remain isolated from the UI. Team-level ownership is documented in:
 
-- [docs/software-architecture.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/software-architecture.md)
-- [docs/development-workflow.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/development-workflow.md)
-- [docs/teams/computer-engineering.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/teams/computer-engineering.md)
-- [docs/teams/software-engineering.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/teams/software-engineering.md)
-- [docs/teams/biomedical-engineering.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/teams/biomedical-engineering.md)
-- [docs/teams/electrical-electronics-engineering.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/teams/electrical-electronics-engineering.md)
+- [docs/software-architecture.md](docs/software-architecture.md)
+- [docs/development-workflow.md](docs/development-workflow.md)
+- [docs/teams/computer-engineering.md](docs/teams/computer-engineering.md)
+- [docs/teams/software-engineering.md](docs/teams/software-engineering.md)
+- [docs/teams/biomedical-engineering.md](docs/teams/biomedical-engineering.md)
+- [docs/teams/electrical-electronics-engineering.md](docs/teams/electrical-electronics-engineering.md)
 
 ## Repository Structure
 
@@ -99,4 +99,4 @@ NO_RESPONSE
 ERROR;CODE=PORT_BUSY
 ```
 
-See [docs/integration-protocol.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/integration-protocol.md) for protocol details.
+See [docs/integration-protocol.md](docs/integration-protocol.md) for protocol details.
