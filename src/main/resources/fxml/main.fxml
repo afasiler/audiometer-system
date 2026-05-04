@@ -13,7 +13,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.audiometer.ui.MainController"
+            fx:controller="edu.ankara.audiometer.gui.MainController"
             styleClass="bg-gray-50, text-gray-800">
 
     <top>

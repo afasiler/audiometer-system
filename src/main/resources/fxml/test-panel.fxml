@@ -5,7 +5,7 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.audiometer.ui.TestPanelController"
+      fx:controller="edu.ankara.audiometer.gui.TestPanelController"
       styleClass="card" VBox.vgrow="ALWAYS">
     
     <HBox styleClass="card-header" alignment="CENTER_LEFT" spacing="8">

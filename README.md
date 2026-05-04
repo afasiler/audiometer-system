@@ -1,60 +1,102 @@
-# Audiometer GUI (JavaFX Client)
+# Audiometer System
 
-This repository contains the graphical user interface (GUI) component for the Multidisciplinary Audiometer Project.
-It has been rewritten in **Java 21** and **JavaFX 21** to serve as a robust, native desktop application communicating via serial ports, while mirroring the modern aesthetics (Tailwind CSS) of the original web-based prototype.
+## Project Overview
 
-## Architecture & Responsibilities
+This repository contains the Maven-based Java clinical software for the multidisciplinary audiometer project described in `2526_MultidisiplinaryTermProjectDetails_V03.pdf`. The application provides the audiologist-facing JavaFX desktop UI, sends commands over serial communication, receives `RESPONSE` style messages, and hosts the software boundary for Hughson-Westlake based hearing tests.
 
-This project is strictly the **GUI / Computer Engineering layer** of the overall system. Other teams (Electronics, Biomedical, etc.) will manage their own repositories (e.g. firmware, DSP logic) to prevent naming collisions and enforce modularity.
+## System Architecture
 
-The application strictly adheres to the **Model-View-Controller (MVC)** architectural pattern:
-- **Models** (`com.audiometer.model.*`): Domain entities (`Patient`, `TestSession`, `Threshold`, Enums).
-- **Views** (`src/main/resources/fxml/`): FXML layouts with pure declarative UI. Styled entirely via `app.css`.
-- **Controllers** (`com.audiometer.ui.*`): Java logic orchestrating the FXML, routing user actions to the Service layer.
-- **Services** (`com.audiometer.service.*`): Interfaces defining core logic and hardware abstraction.
+The PDF defines a four-team project, but the technical runtime has two major components:
 
-## Core Features
+1. Virtual hardware built in Proteus with Arduino UNO, COMPIM, MCP4921 DAC, and LM358 buffer stages.
+2. Clinical desktop software built in Java/JavaFX and organized as a Maven project.
 
-- **Responsive & Modern UI**: Replicates Tailwind CSS aesthetics natively in JavaFX (`app.css`).
-- **Full Internationalization (i18n)**: Instant TR/EN localization toggle applied via JavaFX property bindings without UI reloads.
-- **Hardware Abstraction**: All hardware interaction goes through the `SerialService` interface.
-- **Service Stubbing**: Contains `StubSerialService` to enable UI development and end-to-end testing (Connect -> Play -> Response) without physical hardware.
+Within this repository, the Java side is separated into GUI, serial communication, audiometry logic, model, utility, and resource layers so that hardware access and medical logic remain isolated from the UI. Team-level ownership is documented in:
 
-## Prerequisites
+- [docs/software-architecture.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/software-architecture.md)
+- [docs/development-workflow.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/development-workflow.md)
+- [docs/teams/computer-engineering.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/teams/computer-engineering.md)
+- [docs/teams/software-engineering.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/teams/software-engineering.md)
+- [docs/teams/biomedical-engineering.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/teams/biomedical-engineering.md)
+- [docs/teams/electrical-electronics-engineering.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/teams/electrical-electronics-engineering.md)
 
-- JDK 21+
-- Apache Maven (Version 3.9+ recommended)
+## Repository Structure
 
-## Build & Run
-
-To compile and launch the application:
-```bash
-mvn clean compile javafx:run
+```text
+audiometer-system/
+├── docs/
+│   ├── integration-protocol.md
+│   ├── development-workflow.md
+│   ├── software-architecture.md
+│   ├── teams/
+│   └── test-plan.md
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── edu/ankara/audiometer/
+│   │   │       ├── app/
+│   │   │       ├── audiometry/
+│   │   │       ├── gui/
+│   │   │       ├── i18n/
+│   │   │       ├── model/
+│   │   │       ├── serial/
+│   │   │       └── util/
+│   │   └── resources/
+│   │       ├── css/
+│   │       ├── fxml/
+│   │       └── i18n/
+│   └── test/
+│       └── java/
+│           └── edu/ankara/audiometer/
+├── pom.xml
+└── .gitignore
 ```
 
-To run unit tests (JUnit 5):
+## Requirements
+
+- JDK 21 or newer
+- Maven 3.9 or newer
+- A serial endpoint or Proteus/Arduino setup for non-stub integration
+
+## How to Build
+
 ```bash
-mvn test
+mvn clean compile
 ```
 
-## Structure Details
+## How to Run
 
-### 1. `I18nManager`
-A singleton managing resource bundles (`messages_en.properties`, `messages_tr.properties`). It provides an observable `bundleProperty()` that all UI elements bind to, enabling real-time language switching.
+```bash
+mvn javafx:run
+```
 
-### 2. `ServiceRegistry`
-A global locator for service implementations. By default, it registers stub implementations (`StubSerialService`) for isolated development. In production, this can be swapped with a real `JSerialCommService`.
+## Team Responsibilities
 
-### 3. FXML Modularity
-The UI is broken down into modular panels:
-- `main.fxml` (Root BorderPane)
-- `connection-panel.fxml` (Serial port configs)
-- `patient-panel.fxml` (Form validation & Session init)
-- `test-panel.fxml` (Frequency/Intensity grid & interaction)
-- `audiogram-panel.fxml` (Placeholder for future charts integration)
+- Computer engineering: JavaFX GUI, frequency/intensity controls, serial command transmission, response reading, and audiogram presentation.
+- Software engineering: Hughson-Westlake flow, pure function style medical calculations, immutable data structures where practical, safe parsing and error handling, and automated tests.
+- Biomedical engineering: Hughson-Westlake rule definition, test frequency range, IEC 60645-1 interpretation, and clinical validation criteria.
+- Electrical-electronics engineering: Proteus circuit, DAC tone generation, virtual or optional physical response button, and serial protocol compatibility with Java.
+- Integration boundary: raw serial messages are parsed in `serial`, then converted into domain-level patient responses inside `audiometry`.
 
-## Future Work (Other Teams / Stages)
+## Testing
 
-1. **JSerialComm Integration**: Implement the real `SerialService` interface to replace `StubSerialService` to communicate with the physical Audiometer PCB.
-2. **Hughson-Westlake Algorithm**: Implement the `HughsonWestlakeService` to run automated testing procedures based on user responses.
-3. **Audiogram Charting**: Replace the placeholder in `audiogram-panel.fxml` with a JavaFX LineChart or JFreeChart implementation.
+Run the automated test suite with:
+
+```bash
+mvn clean test
+```
+
+Current tests cover stub serial behavior, serial response parsing, basic Hughson-Westlake step behavior, and separation of left/right ear threshold data.
+
+## Serial Communication Protocol
+
+The Java application is structured around line-oriented command/response messages such as:
+
+```text
+PLAY;FREQ=1000;DB=40;EAR=RIGHT
+RESPONSE
+NO_RESPONSE
+ERROR;CODE=PORT_BUSY
+```
+
+See [docs/integration-protocol.md](/Users/yusufdemir/audiometer-workspace/audiometer-system/docs/integration-protocol.md) for protocol details.

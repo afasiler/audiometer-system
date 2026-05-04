@@ -6,7 +6,7 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.audiometer.ui.AudiogramPanelController"
+      fx:controller="edu.ankara.audiometer.gui.AudiogramPanelController"
       styleClass="p-6, gap-6" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
       
     <HBox alignment="CENTER_LEFT" spacing="16">

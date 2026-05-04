@@ -10,7 +10,7 @@
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.audiometer.ui.ConnectionPanelController"
+      fx:controller="edu.ankara.audiometer.gui.ConnectionPanelController"
       styleClass="card">
     
     <HBox styleClass="card-header" alignment="CENTER_LEFT" spacing="8">
