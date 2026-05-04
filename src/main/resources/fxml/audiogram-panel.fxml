@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.audiometer.ui.AudiogramPanelController"
+      styleClass="p-6, gap-6" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+      
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label fx:id="titleLabel" styleClass="text-2xl, font-semibold, text-gray-800" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="exportPngBtn" styleClass="button, btn-secondary">
+            <graphic>
+                <SVGPath content="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4 M7 10l5 5 5-5 M12 15V3" stroke="#4B5563" strokeWidth="2" fill="transparent"/>
+            </graphic>
+        </Button>
+        <Button fx:id="exportPdfBtn" styleClass="button, btn-secondary">
+            <graphic>
+                <SVGPath content="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4 M7 10l5 5 5-5 M12 15V3" stroke="#4B5563" strokeWidth="2" fill="transparent"/>
+            </graphic>
+        </Button>
+    </HBox>
+    
+    <VBox styleClass="card" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+        <VBox styleClass="card-content, gap-6" alignment="CENTER" VBox.vgrow="ALWAYS">
+            <SVGPath content="M3 3v18h18 M18 9l-5-5-4 4-5-5" stroke="#9CA3AF" strokeWidth="2" fill="transparent" scaleX="3" scaleY="3" />
+            <Label text="Audiogram Chart Placeholder" styleClass="text-xl, font-medium, text-gray-400" />
+            <Label text="This area will be replaced with JavaFX Charts or JFreeChart integration in later stages." styleClass="text-sm, text-gray-400" wrapText="true" textAlignment="CENTER" />
+        </VBox>
+    </VBox>
+</VBox>

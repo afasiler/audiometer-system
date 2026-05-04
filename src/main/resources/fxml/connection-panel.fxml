@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.audiometer.ui.ConnectionPanelController"
+      styleClass="card">
+    
+    <HBox styleClass="card-header" alignment="CENTER_LEFT" spacing="8">
+        <SVGPath content="M12 22v-5 M9 8V2 M15 8V2 M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z" styleClass="svg-icon" stroke="#4B5563" strokeWidth="2" fill="transparent"/>
+        <Label fx:id="titleLabel" styleClass="card-title" />
+    </HBox>
+    
+    <VBox styleClass="card-content, gap-4">
+        <HBox styleClass="gap-4">
+            <VBox styleClass="gap-2" HBox.hgrow="ALWAYS">
+                <Label fx:id="portLabel" styleClass="input-label" />
+                <ComboBox fx:id="portCombo" styleClass="combo-box" maxWidth="Infinity" />
+            </VBox>
+            <VBox styleClass="gap-2" HBox.hgrow="ALWAYS">
+                <Label fx:id="baudLabel" styleClass="input-label" />
+                <ComboBox fx:id="baudCombo" styleClass="combo-box" maxWidth="Infinity" />
+            </VBox>
+        </HBox>
+        
+        <Button fx:id="connectBtn" styleClass="button, btn-primary" maxWidth="Infinity" />
+        
+        <HBox fx:id="statusContainer" alignment="CENTER_LEFT" spacing="8" visible="false" managed="false">
+            <Circle radius="4" styleClass="status-indicator-green" />
+            <Label fx:id="connectedTextLabel" styleClass="text-sm, font-medium, text-emerald-600" />
+        </HBox>
+    </VBox>
+</VBox>

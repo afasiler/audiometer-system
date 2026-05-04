@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.audiometer.ui.MainController"
+            styleClass="bg-gray-50, text-gray-800">
+
+    <top>
+        <!-- Top Bar: h-14 (56px) px-4 bg-white border-b border-gray-200 -->
+        <HBox prefHeight="56" alignment="CENTER_LEFT" styleClass="bg-white, border-b, px-4">
+            
+            <!-- Left side (Logo + Title) -->
+            <HBox alignment="CENTER_LEFT" styleClass="gap-3">
+                <HBox alignment="CENTER" styleClass="bg-blue-600, rounded-md" minWidth="32" minHeight="32" maxWidth="32" maxHeight="32">
+                    <SVGPath content="M22 12h-4l-3 9L9 3l-3 9H2" stroke="white" strokeWidth="2" fill="transparent"/>
+                </HBox>
+                <Label fx:id="titleLabel" styleClass="text-lg, font-semibold, text-gray-800" />
+            </HBox>
+            
+            <!-- Spacer -->
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <!-- Right side (Language Toggle + User/Settings) -->
+            <HBox alignment="CENTER_LEFT" styleClass="gap-4">
+                <HBox alignment="CENTER" styleClass="bg-gray-100, p-1, rounded-md">
+                    <Button fx:id="btnTr" text="TR" styleClass="button, toggle-btn, toggle-btn-selected" />
+                    <Button fx:id="btnEn" text="EN" styleClass="button, toggle-btn" />
+                </HBox>
+                
+                <Button styleClass="btn-icon">
+                    <graphic>
+                        <SVGPath content="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" stroke="#6B7280" strokeWidth="2" fill="transparent"/>
+                    </graphic>
+                </Button>
+                <Button styleClass="btn-icon">
+                    <graphic>
+                        <SVGPath content="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#6B7280" strokeWidth="2" fill="transparent"/>
+                    </graphic>
+                </Button>
+            </HBox>
+        </HBox>
+    </top>
+
+    <left>
+        <ScrollPane fitToWidth="true" styleClass="edge-to-edge" prefWidth="380" hbarPolicy="NEVER">
+            <VBox styleClass="p-6, gap-4">
+                <fx:include source="connection-panel.fxml"/>
+                <fx:include source="patient-panel.fxml"/>
+                <fx:include source="test-panel.fxml"/>
+            </VBox>
+        </ScrollPane>
+    </left>
+
+    <!-- Center Content -->
+    <center>
+        <fx:include source="audiogram-panel.fxml"/>
+    </center>
+
+    <bottom>
+        <!-- Status Bar: h-8 (32px) bg-gray-50 border-t border-gray-200 flex px-4 -->
+        <HBox prefHeight="32" alignment="CENTER_LEFT" styleClass="bg-gray-50, border-t, px-4">
+            
+            <!-- Left (Connection) -->
+            <HBox alignment="CENTER_LEFT" styleClass="gap-2" prefWidth="400">
+                <Circle fx:id="connectionStatusDot" radius="4" styleClass="status-indicator-red" />
+                <Label fx:id="connectionStatusLabel" styleClass="text-xs, text-gray-500" />
+            </HBox>
+            
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <!-- Center (Test Status) -->
+            <HBox alignment="CENTER" prefWidth="400">
+                <Label fx:id="testStatusLabel" styleClass="text-xs, text-gray-600, font-medium" />
+            </HBox>
+            
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <!-- Right (Time) -->
+            <HBox alignment="CENTER_RIGHT" prefWidth="400">
+                <Label text="12:00:00" styleClass="text-xs, text-gray-500, font-mono" />
+            </HBox>
+            
+        </HBox>
+    </bottom>
+</BorderPane>

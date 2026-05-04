@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.audiometer.ui.PatientPanelController"
+      styleClass="card">
+    
+    <HBox styleClass="card-header" alignment="CENTER_LEFT" spacing="8">
+        <SVGPath content="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" styleClass="svg-icon" stroke="#4B5563" strokeWidth="2" fill="transparent"/>
+        <Label fx:id="titleLabel" styleClass="card-title" />
+    </HBox>
+    
+    <VBox styleClass="card-content, gap-4">
+        
+        <VBox styleClass="gap-2">
+            <Label fx:id="fullNameLabel" styleClass="input-label" />
+            <TextField fx:id="fullNameField" promptText="Ahmet Yılmaz" />
+        </VBox>
+        
+        <HBox styleClass="gap-4">
+            <VBox styleClass="gap-2" HBox.hgrow="ALWAYS">
+                <Label fx:id="ageLabel" styleClass="input-label" />
+                <TextField fx:id="ageField" promptText="45" />
+            </VBox>
+            <VBox styleClass="gap-2" HBox.hgrow="ALWAYS">
+                <Label fx:id="genderLabel" styleClass="input-label" />
+                <ComboBox fx:id="genderCombo" maxWidth="Infinity" />
+            </VBox>
+        </HBox>
+
+        <VBox styleClass="gap-2">
+            <Label fx:id="dateLabel" styleClass="input-label" />
+            <DatePicker fx:id="datePicker" maxWidth="Infinity" />
+        </VBox>
+        
+        <!-- We also have Audiologist field in model, though not in the React UI directly, let's add it -->
+        <VBox styleClass="gap-2">
+            <Label fx:id="audiologistLabel" styleClass="input-label" />
+            <TextField fx:id="audiologistField" promptText="Dr. John Doe" />
+        </VBox>
+
+        <Button fx:id="saveBtn" styleClass="button, btn-secondary" maxWidth="Infinity" />
+        
+    </VBox>
+</VBox>
